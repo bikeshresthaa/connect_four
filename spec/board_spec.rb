@@ -62,7 +62,7 @@ describe Board do
       expect(board.winner?('🟡')).to be true
     end
 
-    xit 'detects diagonal win' do
+    it 'detects diagonal win' do
       board.drop_piece(1, '🟡')
       board.drop_piece(2, '🔴'); board.drop_piece(2, '🟡');
       board.drop_piece(3, '🔴'); board.drop_piece(3, '🔴'); board.drop_piece(3, '🟡');

@@ -21,10 +21,14 @@ class Board
   end
 
   def winner?(piece)
-    horizontal_win(piece) || vertical_win(piece)
+    horizontal_win(piece) || vertical_win(piece)  || diagonal_win(piece)
   end
   
   private
+
+  def diagonal_win(piece)
+    diagonal_down(piece) || diagonal_up(piece)
+  end
   
   def column_full?(column)
     @grid[0][column] != nil
@@ -54,6 +58,24 @@ class Board
     (0...COLUMNS).each do |column|
       (ROWS - 1).downto(ROWS - 3) do |row|
         return true if (0..3).all? { |i| @grid[row - i][column] == piece }
+      end
+    end
+    false
+  end
+
+  def diagonal_down(piece)
+    (0..ROWS - 4).each do |row|
+      (0..COLUMNS - 4).each do |column|
+        return true if (0..3).all? { |i| @grid[row + i][column + i] == piece}
+      end
+    end
+    false
+  end
+
+  def diagonal_up(piece)
+    (3...ROWS).each do |row|
+      (0..COLUMNS - 4).each do |column|
+        return true if (0..3).all? { |i| @grid[row - i][column + i] == piece }
       end
     end
     false
