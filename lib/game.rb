@@ -14,6 +14,7 @@ class Game
   def play
     until game_over?
       display_board
+      play_turn
     end
     display_result
   end
@@ -42,11 +43,11 @@ class Game
   private
 
   def display_board
-    puts "\n 1 2 3 4 5 6 7"
+    puts "\n  1  2  3  4  5  6  7"
     @board.grid.each do |row|
       print "|"
       row.each do |col|
-        print col.nil? ? " " : col
+        print col.nil? ? "  " : col
         print "|"
       end
       puts

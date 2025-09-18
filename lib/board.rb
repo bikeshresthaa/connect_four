@@ -1,5 +1,5 @@
 class Board
-  attr_accessor :grid
+  attr_reader :grid
 
   ROWS = 6
   COLUMNS = 7
@@ -24,15 +24,16 @@ class Board
     horizontal_win(piece) || vertical_win(piece)  || diagonal_win(piece)
   end
   
+  def column_full?(column)
+    @grid[0][column] != nil
+  end
+  
   private
 
   def diagonal_win(piece)
     diagonal_down(piece) || diagonal_up(piece)
   end
   
-  def column_full?(column)
-    @grid[0][column] != nil
-  end
 
   def find_available_row(column)
     (ROWS - 1).downto(0) do |row|
